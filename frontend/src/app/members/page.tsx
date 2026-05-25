@@ -35,7 +35,7 @@ export default function MembersPage() {
         <div>
           <h1 className="text-xl font-medium text-stone-900">Membros</h1>
           <p className="text-sm text-stone-500 mt-0.5">
-            {data?.meta.total ?? 0} membros cadastrados
+            {(data as any)?.meta?.total ?? 0} membros cadastrados
           </p>
         </div>
         <Link href="/members/new" className="btn-primary">
