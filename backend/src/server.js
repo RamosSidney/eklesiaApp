@@ -41,9 +41,6 @@ app.get('/health', async (request, reply) => {
   return { status: 'ok', timestamp: new Date().toISOString() }
 })
 
-// — Inicialização do Servidor
-const port = parseInt(process.env.PORT ?? '3001')
-
 // — Inicialização do Servidor (Configuração para o Railway e Local)
 const port = parseInt(process.env.PORT ?? '3001')
 try {
