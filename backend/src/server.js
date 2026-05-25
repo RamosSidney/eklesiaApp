@@ -12,7 +12,7 @@ import { eventsRoutes } from './modules/events/events.routes.js'
 
 const app = Fastify({ logger: process.env.NODE_ENV !== 'test' })
 
-// ── Plugins ────────────────────────────────────────────────
+// — Plugins
 await app.register(helmet, { contentSecurityPolicy: false })
 await app.register(cors, {
   origin: process.env.ALLOWED_ORIGINS?.split(',') ?? ['http://localhost:3000'],
@@ -21,24 +21,22 @@ await app.register(cors, {
 await app.register(jwt, { secret: process.env.JWT_SECRET })
 await app.register(multipart, { limits: { fileSize: 5 * 1024 * 1024 } })
 
-// ── Decorator: autenticação ────────────────────────────────
+// — Decorator: autenticação
 app.decorate('authenticate', async (request, reply) => {
   try {
     await request.jwtVerify()
-  } catch {
+  } catch (err) {
     reply.status(401).send({ error: 'Token inválido ou expirado' })
   }
 })
 
-// ── Rotas ──────────────────────────────────────────────────
-app.register(authRoutes,       { prefix: '/api/auth' })
-app.register(membersRoutes,    { prefix: '/api/members' })
-app.register(ministriesRoutes, { prefix: '/api/ministries' })
-app.register(eventsRoutes,     { prefix: '/api/events' })
+// — Registro das Rotas (Correção do Erro 404)
+await app.register(authRoutes, { prefix: '/api/auth' })
+await app.register(membersRoutes, { prefix: '/api/members' })
+await app.register(ministriesRoutes, { prefix: '/api/ministries' })
+await app.register(eventsRoutes, { prefix: '/api/events' })
 
-app.get('/health', () => ({ status: 'ok', ts: new Date().toISOString() }))
-
-// ── Start ──────────────────────────────────────────────────
+// — Inicialização do Servidor (Configuração para o Railway e Local)
 const port = parseInt(process.env.PORT ?? '3001')
 try {
   await app.listen({ port, host: '0.0.0.0' })
