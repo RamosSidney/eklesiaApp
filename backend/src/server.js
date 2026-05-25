@@ -36,13 +36,10 @@ await app.register(membersRoutes, { prefix: '/api/members' })
 await app.register(ministriesRoutes, { prefix: '/api/ministries' })
 await app.register(eventsRoutes, { prefix: '/api/events' })
 
-// 👇 ADICIONE ESSA ROTA AQUI (Fora de qualquer prefixo)
+// — Rota de Healthcheck (Exigência do Railway)
 app.get('/health', async (request, reply) => {
   return { status: 'ok', timestamp: new Date().toISOString() }
 })
-
-// — Inicialização do Servidor
-const port = parseInt(process.env.PORT ?? '3001')
 
 // — Inicialização do Servidor (Configuração para o Railway e Local)
 const port = parseInt(process.env.PORT ?? '3001')
