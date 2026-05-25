@@ -43,9 +43,6 @@ app.get('/health', async (request, reply) => {
 
 // — Inicialização do Servidor
 const port = parseInt(process.env.PORT ?? '3001')
-
-// — Inicialização do Servidor (Configuração para o Railway e Local)
-const port = parseInt(process.env.PORT ?? '3001')
 try {
   await app.listen({ port, host: '0.0.0.0' })
   console.log(`✦ EklēsiaApp API rodando em http://localhost:${port}`)
