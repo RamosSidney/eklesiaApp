@@ -1,0 +1,34 @@
+{
+  "expo": {
+    "name": "EklēsiaApp",
+    "slug": "eklesiaapp",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "scheme": "eklesiaapp",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#534AB7"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.eklesiaapp.mobile"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#534AB7"
+      },
+      "package": "com.eklesiaapp.mobile"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

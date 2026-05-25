@@ -1,0 +1,26 @@
+# Pastas de dependências
+node_modules/
+
+# Arquivos de ambiente e chaves secretas (Raiz e subpastas)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+**/.env
+**/.env.local
+
+# Caches e Builds de frameworks (Next.js, Vite, etc.)
+.next/
+dist/
+build/
+.expo/
+
+# Arquivos compactados e backups
+*.zip
+*.tar.gz
+*.rar
+
+# Arquivos do Sistema Operacional
+.DS_Store
+Thumbs.db

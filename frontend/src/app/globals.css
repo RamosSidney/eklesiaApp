@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --brand: #534AB7;
+    --brand-light: #EEEDFE;
+    --brand-dark: #3C3489;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-syne), ui-sans-serif, system-ui;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.02em; }
+}
+
+@layer components {
+  .sidebar-link {
+    @apply flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-stone-500
+           transition-colors hover:bg-stone-100 hover:text-stone-900;
+  }
+  .sidebar-link.active {
+    @apply bg-brand-50 text-brand-800 font-medium;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium
+           bg-brand-600 text-white hover:bg-brand-800 transition-colors;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium
+           bg-white border border-stone-200 text-stone-700 hover:bg-stone-50 transition-colors;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium;
+  }
+  .input {
+    @apply w-full px-3 py-2 text-sm border border-stone-200 rounded-lg bg-white
+           placeholder:text-stone-400
+           focus:outline-none focus:ring-2 focus:ring-brand-200 focus:border-brand-600
+           transition;
+  }
+  .label {
+    @apply block text-xs font-medium text-stone-500 mb-1;
+  }
+  .card {
+    @apply bg-white border border-stone-100 rounded-xl shadow-sm;
+  }
+}
