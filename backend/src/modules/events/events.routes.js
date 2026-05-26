@@ -1,12 +1,13 @@
 import { z } from 'zod'
 import { supabase } from '../../shared/supabase.js'
 
+// Flexibilizando o esquema para aceitar strings normais de data e hora
 const eventSchema = z.object({
   title:       z.string().min(2).max(200),
   type:        z.enum(['service','baptism','retreat','cell','wedding','other']).default('service'),
   description: z.string().optional(),
-  starts_at:   z.string().datetime(),
-  ends_at:     z.string().datetime().optional().nullable(),
+  starts_at:   z.string(), // 👈 Retiramos o .datetime() restrito aqui
+  ends_at:     z.string().optional().nullable(), // 👈 E aqui
   location:    z.string().optional(),
 })
 
