@@ -5,9 +5,8 @@ import { useMembersSummary, useBirthdays, useMembers } from '@/hooks/useMembers'
 import { STATUS_LABELS, STATUS_COLORS } from '@/types'
 import { Users, UserCheck, Droplets, Building2, Cake } from 'lucide-react'
 import { format, parseISO } from 'date-fns'
-import { ptBR } from 'date-fns/locale'
 import Link from 'next/link'
-import { api } from '@/lib/api' // Importando o seu cliente de API conectado ao Railway
+import { api } from '@/lib/api' // Seu cliente Axios conectado ao Railway
 
 interface MembersSummary {
   total: number
@@ -24,18 +23,18 @@ export default function DashboardPage() {
   const { data: bday } = useBirthdays()
   const { data: recent } = useMembers({ limit: 5, page: 1 })
   
-  // Estado para guardar o total de ministérios dinamicamente
+  // Estado para armazenar o total de ministérios dinamicamente
   const [totalMinistries, setTotalMinistries] = useState<number | string>('—')
 
   useEffect(() => {
-    // Busca os ministérios direto da API do Railway
+    // Busca os ministérios diretamente da API do Railway
     api.get('/ministries')
       .then(response => {
         if (Array.isArray(response.data)) {
-          setTotalMinistries(response.data.length) // Backend retorna Array, pegamos o tamanho dele
+          setTotalMinistries(response.data.length) // O backend retorna um Array direto
         }
       })
-      .catch(err => console.error('Erro ao buscar ministérios:', err))
+      .catch(err => console.error('Erro ao buscar total de ministérios:', err))
   }, [])
 
   const summary = sum as MembersSummary | undefined
