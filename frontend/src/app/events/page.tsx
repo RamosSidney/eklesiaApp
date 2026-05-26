@@ -42,7 +42,11 @@ export default function EventsPage() {
 
   async function handleCreate(e: React.FormEvent) {
     e.preventDefault()
-    await createEvent.mutateAsync(form as any)
+    const payload = {
+      ...form,
+      starts_at: form.starts_at ? new Date(form.starts_at).toISOString() : '',
+    }
+    await createEvent.mutateAsync(payload as any)
     setForm({ title: '', type: 'service', starts_at: '', location: '' })
     setShowForm(false)
   }
